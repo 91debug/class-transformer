@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { instanceToPlain, plainToClass, Expose } from '../../src/index';
+import { classToPlain, plainToClass, Expose } from '../../src/index';
 import { defaultMetadataStorage } from '../../src/storage';
 import { Type } from '../../src/decorators';
 
@@ -44,7 +44,7 @@ describe('es6 data types', () => {
     expect(classedUser.weapons.get('secondWeapon')).toEqual('eagle');
     expect(classedUser.weapons.get('thirdWeapon')).toEqual('ak-47');
 
-    const plainedUser = instanceToPlain(user);
+    const plainedUser = classToPlain(user);
     expect(plainedUser).not.toBeInstanceOf(User);
     expect(plainedUser).toEqual({
       id: 1,
@@ -93,7 +93,7 @@ describe('es6 data types', () => {
     expect(classedUser.weapons.has('eagle')).toBeTruthy();
     expect(classedUser.weapons.has('ak-47')).toBeTruthy();
 
-    const plainedUser = instanceToPlain(user);
+    const plainedUser = classToPlain(user);
     expect(plainedUser).not.toBeInstanceOf(User);
     expect(plainedUser).toEqual({
       id: 1,
@@ -167,7 +167,7 @@ describe('es6 data types', () => {
       range: 800,
     });
 
-    const plainedUser = instanceToPlain(user);
+    const plainedUser = classToPlain(user);
     expect(plainedUser).not.toBeInstanceOf(User);
     expect(plainedUser).toEqual({
       id: 1,
@@ -240,7 +240,7 @@ describe('es6 data types', () => {
     expect(third).toBeInstanceOf(Weapon);
     expect(third).toEqual({ model: 'ak-47', range: 800 });
 
-    const plainedUser = instanceToPlain(user);
+    const plainedUser = classToPlain(user);
     expect(plainedUser).not.toBeInstanceOf(User);
     expect(plainedUser).toEqual({
       id: 1,
@@ -296,7 +296,7 @@ describe('es6 data types', () => {
     user.id = 1;
     user.name = 'Max Pain';
     user.weapons = weapons;
-    const plainedUser = instanceToPlain(user);
+    const plainedUser = classToPlain(user);
     expect(plainedUser).not.toBeInstanceOf(User);
     expect(plainedUser).toEqual({
       id: 1,

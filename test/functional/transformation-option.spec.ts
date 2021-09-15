@@ -1,10 +1,10 @@
 import 'reflect-metadata';
-import { instanceToPlain, plainToClass } from '../../src/index';
+import { classToPlain, plainToClass } from '../../src/index';
 import { defaultMetadataStorage } from '../../src/storage';
 import { Exclude, Expose } from '../../src/decorators';
 
 describe('filtering by transformation option', () => {
-  it('@Exclude with toPlainOnly set to true then it should be excluded only during instanceToPlain and classToPlainFromExist operations', () => {
+  it('@Exclude with toPlainOnly set to true then it should be excluded only during classToPlain and classToPlainFromExist operations', () => {
     defaultMetadataStorage.clear();
 
     class User {
@@ -27,7 +27,7 @@ describe('filtering by transformation option', () => {
       password: 'imnosuperman',
     };
 
-    const plainedUser = instanceToPlain(user);
+    const plainedUser = classToPlain(user);
     expect(plainedUser).toEqual({
       firstName: 'Umed',
       lastName: 'Khudoiberdiev',
@@ -72,7 +72,7 @@ describe('filtering by transformation option', () => {
       lastName: 'Khudoiberdiev',
     });
 
-    const plainedUser = instanceToPlain(user);
+    const plainedUser = classToPlain(user);
     expect(plainedUser).toEqual({
       firstName: 'Umed',
       lastName: 'Khudoiberdiev',
@@ -80,7 +80,7 @@ describe('filtering by transformation option', () => {
     });
   });
 
-  it('@Expose with toClassOnly set to true then it should be excluded only during instanceToPlain and classToPlainFromExist operations', () => {
+  it('@Expose with toClassOnly set to true then it should be excluded only during classToPlain and classToPlainFromExist operations', () => {
     defaultMetadataStorage.clear();
 
     @Exclude()
@@ -106,7 +106,7 @@ describe('filtering by transformation option', () => {
       password: 'imnosuperman',
     };
 
-    const plainedUser = instanceToPlain(user);
+    const plainedUser = classToPlain(user);
     expect(plainedUser).toEqual({
       firstName: 'Umed',
       lastName: 'Khudoiberdiev',
@@ -121,7 +121,7 @@ describe('filtering by transformation option', () => {
     });
   });
 
-  it('@Expose with toPlainOnly set to true then it should be excluded only during instanceToPlain and classToPlainFromExist operations', () => {
+  it('@Expose with toPlainOnly set to true then it should be excluded only during classToPlain and classToPlainFromExist operations', () => {
     defaultMetadataStorage.clear();
 
     @Exclude()
@@ -147,7 +147,7 @@ describe('filtering by transformation option', () => {
       password: 'imnosuperman',
     };
 
-    const plainedUser = instanceToPlain(user);
+    const plainedUser = classToPlain(user);
     expect(plainedUser).toEqual({
       firstName: 'Umed',
       lastName: 'Khudoiberdiev',
@@ -174,8 +174,8 @@ describe('filtering by transformation option', () => {
       lastName: string;
     }
 
-    expect(instanceToPlain(new User(), { exposeUnsetFields: false })).toEqual({});
-    expect(instanceToPlain(new User(), { exposeUnsetFields: true })).toEqual({
+    expect(classToPlain(new User(), { exposeUnsetFields: false })).toEqual({});
+    expect(classToPlain(new User(), { exposeUnsetFields: true })).toEqual({
       firstName: undefined,
       lastName: undefined,
     });

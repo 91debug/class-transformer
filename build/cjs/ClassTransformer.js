@@ -5,7 +5,7 @@ const TransformOperationExecutor_1 = require("./TransformOperationExecutor");
 const enums_1 = require("./enums");
 const default_options_constant_1 = require("./constants/default-options.constant");
 class ClassTransformer {
-    instanceToPlain(object, options) {
+    classToPlain(object, options) {
         const executor = new TransformOperationExecutor_1.TransformOperationExecutor(enums_1.TransformationType.CLASS_TO_PLAIN, {
             ...default_options_constant_1.defaultOptions,
             ...options,
@@ -48,7 +48,7 @@ class ClassTransformer {
         return executor.transform(fromObject, object, undefined, undefined, undefined, undefined);
     }
     serialize(object, options) {
-        return JSON.stringify(this.instanceToPlain(object, options));
+        return JSON.stringify(this.classToPlain(object, options));
     }
     /**
      * Deserializes given JSON string to a object of the given class.

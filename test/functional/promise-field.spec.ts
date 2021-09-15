@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { defaultMetadataStorage } from '../../src/storage';
-import { plainToClass, Type, instanceToPlain } from '../../src';
+import { plainToClass, Type, classToPlain } from '../../src';
 
 describe('promise field', () => {
   it('should transform plan to class with promise field', async () => {
@@ -30,7 +30,7 @@ describe('promise field', () => {
     }
 
     const instance = new PromiseClass(Promise.resolve('hi'));
-    const plain = instanceToPlain(instance) as any;
+    const plain = classToPlain(instance) as any;
     expect(plain).toHaveProperty('promise');
     const value = await plain.promise;
     expect(value).toBe('hi');

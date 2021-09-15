@@ -1,10 +1,10 @@
 import 'reflect-metadata';
-import { instanceToInstance, instanceToPlain, plainToClass } from '../../src/index';
+import { instanceToInstance, classToPlain, plainToClass } from '../../src/index';
 import { defaultMetadataStorage } from '../../src/storage';
 import { TransformOperationExecutor } from '../../src/TransformOperationExecutor';
 
 describe('circular reference problem', () => {
-  it('should skip circular reference objects in instanceToPlain operation', () => {
+  it('should skip circular reference objects in classToPlain operation', () => {
     defaultMetadataStorage.clear();
 
     class Caption {
@@ -50,7 +50,7 @@ describe('circular reference problem', () => {
     photo1.caption = caption;
     photo2.caption = caption;
 
-    const plainUser = instanceToPlain(user, { enableCircularCheck: true });
+    const plainUser = classToPlain(user, { enableCircularCheck: true });
     expect(plainUser).toEqual({
       firstName: 'Umed Khudoiberdiev',
       caption: { text: 'cool photo' },

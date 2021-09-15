@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { instanceToPlain } from '../../src/index';
+import { classToPlain } from '../../src/index';
 import { defaultMetadataStorage } from '../../src/storage';
 import { Exclude, Expose } from '../../src/decorators';
 
@@ -25,7 +25,7 @@ describe('ignoring specific decorators', () => {
     user.lastName = 'Khudoiberdiev';
     user.password = 'imnosuperman';
 
-    const plainedUser = instanceToPlain(user, { ignoreDecorators: true });
+    const plainedUser = classToPlain(user, { ignoreDecorators: true });
     expect(plainedUser).toEqual({
       firstName: 'Umed',
       lastName: 'Khudoiberdiev',

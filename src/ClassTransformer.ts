@@ -12,9 +12,9 @@ export class ClassTransformer {
   /**
    * Converts class (constructor) object to plain (literal) object. Also works with arrays.
    */
-  instanceToPlain<T extends Record<string, any>>(object: T, options?: ClassTransformOptions): Record<string, any>;
-  instanceToPlain<T extends Record<string, any>>(object: T[], options?: ClassTransformOptions): Record<string, any>[];
-  instanceToPlain<T extends Record<string, any>>(
+  classToPlain<T extends Record<string, any>>(object: T, options?: ClassTransformOptions): Record<string, any>;
+  classToPlain<T extends Record<string, any>>(object: T[], options?: ClassTransformOptions): Record<string, any>[];
+  classToPlain<T extends Record<string, any>>(
     object: T | T[],
     options?: ClassTransformOptions
   ): Record<string, any> | Record<string, any>[] {
@@ -134,7 +134,7 @@ export class ClassTransformer {
   serialize<T>(object: T, options?: ClassTransformOptions): string;
   serialize<T>(object: T[], options?: ClassTransformOptions): string;
   serialize<T>(object: T | T[], options?: ClassTransformOptions): string {
-    return JSON.stringify(this.instanceToPlain(object, options));
+    return JSON.stringify(this.classToPlain(object, options));
   }
 
   /**

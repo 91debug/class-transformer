@@ -13,13 +13,13 @@ const classTransformer = new ClassTransformer();
 /**
  * Converts class (constructor) object to plain (literal) object. Also works with arrays.
  */
-export function instanceToPlain<T>(object: T, options?: ClassTransformOptions): Record<string, any>;
-export function instanceToPlain<T>(object: T[], options?: ClassTransformOptions): Record<string, any>[];
-export function instanceToPlain<T>(
+export function classToPlain<T>(object: T, options?: ClassTransformOptions): Record<string, any>;
+export function classToPlain<T>(object: T[], options?: ClassTransformOptions): Record<string, any>[];
+export function classToPlain<T>(
   object: T | T[],
   options?: ClassTransformOptions
 ): Record<string, any> | Record<string, any>[] {
-  return classTransformer.instanceToPlain(object, options);
+  return classTransformer.classToPlain(object, options);
 }
 
 /**
@@ -96,7 +96,7 @@ export function classToClassFromExist<T>(object: T, fromObject: T | T[], options
  *
  * @deprecated This function is being removed. Please use
  * ```
- * JSON.stringify(instanceToPlain(object, options))
+ * JSON.stringify(classToPlain(object, options))
  * ```
  */
 export function serialize<T>(object: T, options?: ClassTransformOptions): string;

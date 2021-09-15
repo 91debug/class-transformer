@@ -2,7 +2,7 @@
 import 'reflect-metadata';
 import {
   instanceToInstance,
-  instanceToPlain,
+  classToPlain,
   ClassTransformOptions,
   plainToClass,
   TransformFnParams,
@@ -58,7 +58,7 @@ describe('custom transformation decorator', () => {
     expect(classedUser.name).toEqual('Johny Cage');
     expect(classedUser.date).toBe('custom-transformed');
 
-    const plainedUser = instanceToPlain(user);
+    const plainedUser = classToPlain(user);
     expect(plainedUser).not.toBeInstanceOf(User);
     expect(plainedUser).toEqual({
       id: 1,
@@ -162,7 +162,7 @@ describe('custom transformation decorator', () => {
     user.name = 'Johny Cage';
     optionsArg = undefined;
 
-    instanceToPlain(user, options);
+    classToPlain(user, options);
     expect(keyArg).toBe('name');
     expect(objArg).toEqual(user);
     expect(typeArg).toEqual(TransformationType.CLASS_TO_PLAIN);
@@ -477,7 +477,7 @@ describe('custom transformation decorator', () => {
       program.specialAbility = 'testing';
       model.name = 'John Doe';
       model.hobby = program;
-      const json: any = instanceToPlain(model);
+      const json: any = classToPlain(model);
       expect(json).not.toBeInstanceOf(Person);
       expect(json.hobby).toHaveProperty('__type', 'program');
     }).not.toThrow();
@@ -527,7 +527,7 @@ describe('custom transformation decorator', () => {
       program.specialAbility = 'testing';
       model.name = 'John Doe';
       model.hobbies = [sport, program];
-      const json: any = instanceToPlain(model);
+      const json: any = classToPlain(model);
       expect(json).not.toBeInstanceOf(Person);
       expect(json.hobbies[0]).toHaveProperty('__type', 'sports');
       expect(json.hobbies[1]).toHaveProperty('__type', 'program');
@@ -582,7 +582,7 @@ describe('custom transformation decorator', () => {
       model.name = 'John Doe';
       // NOTE: hobby remains undefined
       model.hobby = undefined;
-      const json: any = instanceToPlain(model);
+      const json: any = classToPlain(model);
       expect(json).not.toBeInstanceOf(Person);
       expect(json.hobby).toBeUndefined();
     }).not.toThrow();
@@ -785,7 +785,7 @@ describe('custom transformation decorator', () => {
 
   it('should serialize a model into json', () => {
     expect(() => {
-      instanceToPlain(model);
+      classToPlain(model);
     }).not.toThrow();
   });
 });

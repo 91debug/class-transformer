@@ -12,7 +12,7 @@ export interface ExposeOptions {
    *
    * Example:
    * ```ts
-   * instanceToPlain(payload, { version: 1.0 });
+   * classToPlain(payload, { version: 1.0 });
    * ```
    */
   since?: number;
@@ -22,7 +22,7 @@ export interface ExposeOptions {
    *
    * Example:
    * ```ts
-   * instanceToPlain(payload, { version: 1.0 });
+   * classToPlain(payload, { version: 1.0 });
    * ```
    */
   until?: number;
@@ -34,7 +34,7 @@ export interface ExposeOptions {
    *
    * Example:
    * ```ts
-   * instanceToPlain(payload, { groups: ['user'] });
+   * classToPlain(payload, { groups: ['user'] });
    * ```
    */
   groups?: string[];

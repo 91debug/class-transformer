@@ -4,8 +4,8 @@ export declare class ClassTransformer {
   /**
    * Converts class (constructor) object to plain (literal) object. Also works with arrays.
    */
-  instanceToPlain<T extends Record<string, any>>(object: T, options?: ClassTransformOptions): Record<string, any>;
-  instanceToPlain<T extends Record<string, any>>(object: T[], options?: ClassTransformOptions): Record<string, any>[];
+  classToPlain<T extends Record<string, any>>(object: T, options?: ClassTransformOptions): Record<string, any>;
+  classToPlain<T extends Record<string, any>>(object: T[], options?: ClassTransformOptions): Record<string, any>[];
   /**
    * Converts class (constructor) object to plain (literal) object.
    * Uses given plain object as source object (it means fills given plain object with data from class object).

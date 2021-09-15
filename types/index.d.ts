@@ -8,8 +8,8 @@ export * from './storage';
 /**
  * Converts class (constructor) object to plain (literal) object. Also works with arrays.
  */
-export declare function instanceToPlain<T>(object: T, options?: ClassTransformOptions): Record<string, any>;
-export declare function instanceToPlain<T>(object: T[], options?: ClassTransformOptions): Record<string, any>[];
+export declare function classToPlain<T>(object: T, options?: ClassTransformOptions): Record<string, any>;
+export declare function classToPlain<T>(object: T[], options?: ClassTransformOptions): Record<string, any>[];
 /**
  * Converts class (constructor) object to plain (literal) object.
  * Uses given plain object as source object (it means fills given plain object with data from class object).
@@ -60,7 +60,7 @@ export declare function classToClassFromExist<T>(object: T, fromObjects: T[], op
  *
  * @deprecated This function is being removed. Please use
  * ```
- * JSON.stringify(instanceToPlain(object, options))
+ * JSON.stringify(classToPlain(object, options))
  * ```
  */
 export declare function serialize<T>(object: T, options?: ClassTransformOptions): string;
