@@ -15,8 +15,8 @@ function TransformPlainToInstance(classType, params) {
             const result = originalMethod.apply(this, args);
             const isPromise = !!result && (typeof result === 'object' || typeof result === 'function') && typeof result.then === 'function';
             return isPromise
-                ? result.then((data) => classTransformer.plainToInstance(classType, data, params))
-                : classTransformer.plainToInstance(classType, result, params);
+                ? result.then((data) => classTransformer.plainToClass(classType, data, params))
+                : classTransformer.plainToClass(classType, result, params);
         };
     };
 }

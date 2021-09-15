@@ -10,7 +10,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deserializeArray = exports.deserialize = exports.serialize = exports.classToClassFromExist = exports.instanceToInstance = exports.plainToClassFromExist = exports.plainToInstance = exports.classToPlainFromExist = exports.instanceToPlain = exports.ClassTransformer = void 0;
+exports.deserializeArray = exports.deserialize = exports.serialize = exports.classToClassFromExist = exports.instanceToInstance = exports.plainToClassFromExist = exports.plainToClass = exports.classToPlainFromExist = exports.instanceToPlain = exports.ClassTransformer = void 0;
 const ClassTransformer_1 = require("./ClassTransformer");
 var ClassTransformer_2 = require("./ClassTransformer");
 Object.defineProperty(exports, "ClassTransformer", { enumerable: true, get: function () { return ClassTransformer_2.ClassTransformer; } });
@@ -27,10 +27,10 @@ function classToPlainFromExist(object, plainObject, options) {
     return classTransformer.classToPlainFromExist(object, plainObject, options);
 }
 exports.classToPlainFromExist = classToPlainFromExist;
-function plainToInstance(cls, plain, options) {
-    return classTransformer.plainToInstance(cls, plain, options);
+function plainToClass(cls, plain, options) {
+    return classTransformer.plainToClass(cls, plain, options);
 }
-exports.plainToInstance = plainToInstance;
+exports.plainToClass = plainToClass;
 function plainToClassFromExist(clsObject, plain, options) {
     return classTransformer.plainToClassFromExist(clsObject, plain, options);
 }

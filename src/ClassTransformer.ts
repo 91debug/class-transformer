@@ -55,17 +55,17 @@ export class ClassTransformer {
   /**
    * Converts plain (literal) object to class (constructor) object. Also works with arrays.
    */
-  plainToInstance<T extends Record<string, any>, V extends Array<any>>(
+  plainToClass<T extends Record<string, any>, V extends Array<any>>(
     cls: ClassConstructor<T>,
     plain: V,
     options?: ClassTransformOptions
   ): T[];
-  plainToInstance<T extends Record<string, any>, V>(
+  plainToClass<T extends Record<string, any>, V>(
     cls: ClassConstructor<T>,
     plain: V,
     options?: ClassTransformOptions
   ): T;
-  plainToInstance<T extends Record<string, any>, V>(
+  plainToClass<T extends Record<string, any>, V>(
     cls: ClassConstructor<T>,
     plain: V | V[],
     options?: ClassTransformOptions
@@ -142,7 +142,7 @@ export class ClassTransformer {
    */
   deserialize<T>(cls: ClassConstructor<T>, json: string, options?: ClassTransformOptions): T {
     const jsonObject: T = JSON.parse(json);
-    return this.plainToInstance(cls, jsonObject, options);
+    return this.plainToClass(cls, jsonObject, options);
   }
 
   /**
@@ -150,6 +150,6 @@ export class ClassTransformer {
    */
   deserializeArray<T>(cls: ClassConstructor<T>, json: string, options?: ClassTransformOptions): T[] {
     const jsonObject: any[] = JSON.parse(json);
-    return this.plainToInstance(cls, jsonObject, options);
+    return this.plainToClass(cls, jsonObject, options);
   }
 }

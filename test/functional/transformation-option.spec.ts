@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { instanceToPlain, plainToInstance } from '../../src/index';
+import { instanceToPlain, plainToClass } from '../../src/index';
 import { defaultMetadataStorage } from '../../src/storage';
 import { Exclude, Expose } from '../../src/decorators';
 
@@ -33,7 +33,7 @@ describe('filtering by transformation option', () => {
       lastName: 'Khudoiberdiev',
     });
 
-    const classedUser = plainToInstance(User, plainUser);
+    const classedUser = plainToClass(User, plainUser);
     expect(classedUser).toBeInstanceOf(User);
     expect(classedUser).toEqual({
       firstName: 'Umed',
@@ -42,7 +42,7 @@ describe('filtering by transformation option', () => {
     });
   });
 
-  it('@Exclude with toClassOnly set to true then it should be excluded only during plainToInstance and plainToClassFromExist operations', () => {
+  it('@Exclude with toClassOnly set to true then it should be excluded only during plainToClass and plainToClassFromExist operations', () => {
     defaultMetadataStorage.clear();
 
     class User {
@@ -65,7 +65,7 @@ describe('filtering by transformation option', () => {
       password: 'imnosuperman',
     };
 
-    const classedUser = plainToInstance(User, plainUser);
+    const classedUser = plainToClass(User, plainUser);
     expect(classedUser).toBeInstanceOf(User);
     expect(classedUser).toEqual({
       firstName: 'Umed',
@@ -112,7 +112,7 @@ describe('filtering by transformation option', () => {
       lastName: 'Khudoiberdiev',
     });
 
-    const classedUser = plainToInstance(User, plainUser);
+    const classedUser = plainToClass(User, plainUser);
     expect(classedUser).toBeInstanceOf(User);
     expect(classedUser).toEqual({
       firstName: 'Umed',
@@ -154,7 +154,7 @@ describe('filtering by transformation option', () => {
       password: 'imnosuperman',
     });
 
-    const classedUser = plainToInstance(User, plainUser);
+    const classedUser = plainToClass(User, plainUser);
     expect(classedUser).toBeInstanceOf(User);
     expect(classedUser).toEqual({
       firstName: 'Umed',
@@ -180,7 +180,7 @@ describe('filtering by transformation option', () => {
       lastName: undefined,
     });
 
-    const classedUser = plainToInstance(User, { exposeUnsetFields: false });
+    const classedUser = plainToClass(User, { exposeUnsetFields: false });
     expect(classedUser).toBeInstanceOf(User);
     expect(classedUser).toEqual({
       firstName: undefined,

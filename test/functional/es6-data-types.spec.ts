@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { instanceToPlain, plainToInstance, Expose } from '../../src/index';
+import { instanceToPlain, plainToClass, Expose } from '../../src/index';
 import { defaultMetadataStorage } from '../../src/storage';
 import { Type } from '../../src/decorators';
 
@@ -34,7 +34,7 @@ describe('es6 data types', () => {
     user.name = 'Max Pain';
     user.weapons = weapons;
 
-    const classedUser = plainToInstance(User, plainUser);
+    const classedUser = plainToClass(User, plainUser);
     expect(classedUser).toBeInstanceOf(User);
     expect(classedUser.id).toEqual(1);
     expect(classedUser.name).toEqual('Max Pain');
@@ -83,7 +83,7 @@ describe('es6 data types', () => {
     user.name = 'Max Pain';
     user.weapons = weapons;
 
-    const classedUser = plainToInstance(User, plainUser);
+    const classedUser = plainToClass(User, plainUser);
     expect(classedUser).toBeInstanceOf(User);
     expect(classedUser.id).toEqual(1);
     expect(classedUser.name).toEqual('Max Pain');
@@ -145,7 +145,7 @@ describe('es6 data types', () => {
     user.name = 'Max Pain';
     user.weapons = weapons;
 
-    const classedUser = plainToInstance(User, plainUser);
+    const classedUser = plainToClass(User, plainUser);
     expect(classedUser).toBeInstanceOf(User);
     expect(classedUser.id).toEqual(1);
     expect(classedUser.name).toEqual('Max Pain');
@@ -223,7 +223,7 @@ describe('es6 data types', () => {
     user.name = 'Max Pain';
     user.weapons = weapons;
 
-    const classedUser = plainToInstance(User, plainUser);
+    const classedUser = plainToClass(User, plainUser);
     expect(classedUser).toBeInstanceOf(User);
     expect(classedUser.id).toEqual(1);
     expect(classedUser.name).toEqual('Max Pain');
@@ -340,10 +340,10 @@ describe('es6 data types', () => {
       });
     }
 
-    const classedUser = plainToInstance(User, plainUser, { excludeExtraneousValues: false });
+    const classedUser = plainToClass(User, plainUser, { excludeExtraneousValues: false });
     checkPlainToClassUser(classedUser);
 
-    const classedUser2 = plainToInstance(User, plainUser, { excludeExtraneousValues: true });
+    const classedUser2 = plainToClass(User, plainUser, { excludeExtraneousValues: true });
     checkPlainToClassUser(classedUser2);
   });
 });

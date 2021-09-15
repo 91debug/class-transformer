@@ -19,7 +19,7 @@ class ClassTransformer {
         });
         return executor.transform(plainObject, object, undefined, undefined, undefined, undefined);
     }
-    plainToInstance(cls, plain, options) {
+    plainToClass(cls, plain, options) {
         const executor = new TransformOperationExecutor_1.TransformOperationExecutor(enums_1.TransformationType.PLAIN_TO_CLASS, {
             ...default_options_constant_1.defaultOptions,
             ...options,
@@ -55,14 +55,14 @@ class ClassTransformer {
      */
     deserialize(cls, json, options) {
         const jsonObject = JSON.parse(json);
-        return this.plainToInstance(cls, jsonObject, options);
+        return this.plainToClass(cls, jsonObject, options);
     }
     /**
      * Deserializes given JSON string to an array of objects of the given class.
      */
     deserializeArray(cls, json, options) {
         const jsonObject = JSON.parse(json);
-        return this.plainToInstance(cls, jsonObject, options);
+        return this.plainToClass(cls, jsonObject, options);
     }
 }
 exports.ClassTransformer = ClassTransformer;

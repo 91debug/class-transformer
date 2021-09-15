@@ -24,12 +24,12 @@ export declare class ClassTransformer {
   /**
    * Converts plain (literal) object to class (constructor) object. Also works with arrays.
    */
-  plainToInstance<T extends Record<string, any>, V extends Array<any>>(
+  plainToClass<T extends Record<string, any>, V extends Array<any>>(
     cls: ClassConstructor<T>,
     plain: V,
     options?: ClassTransformOptions
   ): T[];
-  plainToInstance<T extends Record<string, any>, V>(
+  plainToClass<T extends Record<string, any>, V>(
     cls: ClassConstructor<T>,
     plain: V,
     options?: ClassTransformOptions

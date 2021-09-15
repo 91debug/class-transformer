@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { instanceToInstance, instanceToPlain, plainToInstance } from '../../src/index';
+import { instanceToInstance, instanceToPlain, plainToClass } from '../../src/index';
 import { defaultMetadataStorage } from '../../src/storage';
 import { TransformOperationExecutor } from '../../src/TransformOperationExecutor';
 
@@ -139,12 +139,12 @@ describe('circular reference problem', () => {
     });
 
     it('enableCircularCheck option is undefined (default)', () => {
-      plainToInstance<User, Record<string, any>>(User, user);
+      plainToClass<User, Record<string, any>>(User, user);
       expect(isCircularSpy).not.toHaveBeenCalled();
     });
 
     it('enableCircularCheck option is true', () => {
-      plainToInstance<User, Record<string, any>>(User, user, { enableCircularCheck: true });
+      plainToClass<User, Record<string, any>>(User, user, { enableCircularCheck: true });
       expect(isCircularSpy).toHaveBeenCalled();
     });
   });

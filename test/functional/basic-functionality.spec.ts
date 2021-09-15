@@ -4,7 +4,7 @@ import {
   classToClassFromExist,
   instanceToPlain,
   classToPlainFromExist,
-  plainToInstance,
+  plainToClass,
   plainToClassFromExist,
 } from '../../src/index';
 import { defaultMetadataStorage } from '../../src/storage';
@@ -55,7 +55,7 @@ describe('basic functionality', () => {
     });
     expect(plainUser2).toEqual(existUser);
 
-    const transformedUser = plainToInstance(User, fromPlainUser);
+    const transformedUser = plainToClass(User, fromPlainUser);
     expect(transformedUser).toBeInstanceOf(User);
     expect(transformedUser).toEqual({
       firstName: 'Umed',
@@ -108,12 +108,12 @@ describe('basic functionality', () => {
       age: 12,
     };
 
-    const transformedUser = plainToInstance(User, fromPlainUser);
+    const transformedUser = plainToClass(User, fromPlainUser);
     expect(transformedUser).toBeInstanceOf(User);
     expect(transformedUser).toHaveProperty('age');
     expect(transformedUser.id).toBeUndefined();
 
-    const transformedUserWithoutExtra = plainToInstance(User, fromPlainUser, { excludeExtraneousValues: true });
+    const transformedUserWithoutExtra = plainToClass(User, fromPlainUser, { excludeExtraneousValues: true });
     expect(transformedUserWithoutExtra).toBeInstanceOf(User);
     expect(transformedUserWithoutExtra).not.toHaveProperty('age');
   });
@@ -135,7 +135,7 @@ describe('basic functionality', () => {
       excludeExtraneousValues: true,
     };
 
-    const instance = plainToInstance(
+    const instance = plainToClass(
       ExampleClass,
       { valueOne: 42, valueTwo: 42, extra: true, _otherExtra: true },
       transformationOptions
@@ -197,7 +197,7 @@ describe('basic functionality', () => {
     });
     expect(plainUser2).toEqual(existUser);
 
-    const transformedUser = plainToInstance(User, fromPlainUser);
+    const transformedUser = plainToClass(User, fromPlainUser);
     expect(transformedUser).toBeInstanceOf(User);
     expect(transformedUser).toEqual({
       firstName: 'Umed',
@@ -272,7 +272,7 @@ describe('basic functionality', () => {
     });
     expect(plainUser2).toEqual(existUser);
 
-    const transformedUser = plainToInstance(User, fromPlainUser);
+    const transformedUser = plainToClass(User, fromPlainUser);
     expect(transformedUser).toBeInstanceOf(User);
     expect(transformedUser).toEqual({});
 
@@ -345,7 +345,7 @@ describe('basic functionality', () => {
     });
     expect(plainUser2).toEqual(existUser);
 
-    const transformedUser = plainToInstance(User, fromPlainUser);
+    const transformedUser = plainToClass(User, fromPlainUser);
     expect(transformedUser).toBeInstanceOf(User);
     expect(transformedUser).toEqual({
       firstName: 'Umed',
@@ -427,7 +427,7 @@ describe('basic functionality', () => {
     });
     expect(plainUser2).toEqual(existUser);
 
-    const transformedUser = plainToInstance(User, fromPlainUser, { strategy: 'excludeAll' });
+    const transformedUser = plainToClass(User, fromPlainUser, { strategy: 'excludeAll' });
     expect(transformedUser).toBeInstanceOf(User);
     expect(transformedUser).toEqual({
       firstName: 'Umed',
@@ -507,7 +507,7 @@ describe('basic functionality', () => {
     });
     expect(plainUser2).toEqual(existUser);
 
-    const transformedUser = plainToInstance(User, fromPlainUser, { strategy: 'exposeAll' });
+    const transformedUser = plainToClass(User, fromPlainUser, { strategy: 'exposeAll' });
     expect(transformedUser).toBeInstanceOf(User);
     expect(transformedUser).toEqual({
       firstName: 'Umed',
@@ -652,7 +652,7 @@ describe('basic functionality', () => {
     });
     expect(plainUser2).toEqual(existUser);
 
-    const transformedUser = plainToInstance(User, fromPlainUser, { strategy: 'exposeAll' });
+    const transformedUser = plainToClass(User, fromPlainUser, { strategy: 'exposeAll' });
     expect(transformedUser).toBeInstanceOf(User);
     expect(transformedUser).toEqual({
       firstName: '321',
@@ -912,7 +912,7 @@ describe('basic functionality', () => {
     fromExistPhoto.metadata = 'taken by Camera';
     fromExistUser.photo = fromExistPhoto;
 
-    const transformedUser = plainToInstance(User, fromPlainUser);
+    const transformedUser = plainToClass(User, fromPlainUser);
     expect(transformedUser).toBeInstanceOf(User);
     expect(transformedUser.photo).toBeInstanceOf(Photo);
     expect(transformedUser).toEqual({
@@ -1082,7 +1082,7 @@ describe('basic functionality', () => {
     });
     expect(plainUser2.isActive).toBeUndefined();
 
-    const transformedUser2 = plainToInstance(User, fromPlainUser, { groups: ['user'] });
+    const transformedUser2 = plainToClass(User, fromPlainUser, { groups: ['user'] });
     expect(transformedUser2).toBeInstanceOf(User);
     expect(transformedUser2.photo).toBeInstanceOf(Photo);
     expect(transformedUser2).toEqual({
@@ -1156,7 +1156,7 @@ describe('basic functionality', () => {
     expect(plainUser3.password).toBeUndefined();
     expect(plainUser3.isActive).toBeUndefined();
 
-    const transformedUser3 = plainToInstance(User, fromPlainUser, { groups: ['guest'] });
+    const transformedUser3 = plainToClass(User, fromPlainUser, { groups: ['guest'] });
     expect(transformedUser3).toBeInstanceOf(User);
     expect(transformedUser3.photo).toBeInstanceOf(Photo);
     expect(transformedUser3).toEqual({
@@ -1187,7 +1187,7 @@ describe('basic functionality', () => {
     expect(plainUser4.lastName).toBeUndefined();
     expect(plainUser4.password).toBeUndefined();
 
-    const transformedUser4 = plainToInstance(User, fromPlainUser, { groups: ['admin'] });
+    const transformedUser4 = plainToClass(User, fromPlainUser, { groups: ['admin'] });
     expect(transformedUser4).toBeInstanceOf(User);
     expect(transformedUser4.photo).toBeInstanceOf(Photo);
     expect(transformedUser4.photos[0]).toBeInstanceOf(Photo);
@@ -1227,7 +1227,7 @@ describe('basic functionality', () => {
       ],
     });
 
-    const transformedUser5 = plainToInstance(User, fromPlainUser, { groups: ['admin', 'user'] });
+    const transformedUser5 = plainToClass(User, fromPlainUser, { groups: ['admin', 'user'] });
     expect(transformedUser5).toBeInstanceOf(User);
     expect(transformedUser5).toEqual({
       firstName: 'Umed',
@@ -1339,7 +1339,7 @@ describe('basic functionality', () => {
       ],
     });
 
-    const transformedUser1 = plainToInstance(User, fromPlainUser);
+    const transformedUser1 = plainToClass(User, fromPlainUser);
     expect(transformedUser1).toBeInstanceOf(User);
     expect(transformedUser1.photo).toBeInstanceOf(Photo);
     expect(transformedUser1.photos[0]).toBeInstanceOf(Photo);
@@ -1368,7 +1368,7 @@ describe('basic functionality', () => {
       },
     });
 
-    const transformedUser2 = plainToInstance(User, fromPlainUser, { version: 0.3 });
+    const transformedUser2 = plainToClass(User, fromPlainUser, { version: 0.3 });
     expect(transformedUser2).toBeInstanceOf(User);
     expect(transformedUser2.photo).toBeInstanceOf(Photo);
     expect(transformedUser2).toEqual({
@@ -1386,7 +1386,7 @@ describe('basic functionality', () => {
       },
     });
 
-    const transformedUser3 = plainToInstance(User, fromPlainUser, { version: 0.5 });
+    const transformedUser3 = plainToClass(User, fromPlainUser, { version: 0.5 });
     expect(transformedUser3).toBeInstanceOf(User);
     expect(transformedUser3.photo).toBeInstanceOf(Photo);
     expect(transformedUser3).toEqual({
@@ -1406,7 +1406,7 @@ describe('basic functionality', () => {
       },
     });
 
-    const transformedUser4 = plainToInstance(User, fromPlainUser, { version: 1 });
+    const transformedUser4 = plainToClass(User, fromPlainUser, { version: 1 });
     expect(transformedUser4).toBeInstanceOf(User);
     expect(transformedUser4.photo).toBeInstanceOf(Photo);
     expect(transformedUser4).toEqual({
@@ -1428,7 +1428,7 @@ describe('basic functionality', () => {
       },
     });
 
-    const transformedUser5 = plainToInstance(User, fromPlainUser, { version: 1.5 });
+    const transformedUser5 = plainToClass(User, fromPlainUser, { version: 1.5 });
     expect(transformedUser5).toBeInstanceOf(User);
     expect(transformedUser5.photo).toBeInstanceOf(Photo);
     expect(transformedUser5).toEqual({
@@ -1450,7 +1450,7 @@ describe('basic functionality', () => {
       },
     });
 
-    const transformedUser6 = plainToInstance(User, fromPlainUser, { version: 2 });
+    const transformedUser6 = plainToClass(User, fromPlainUser, { version: 2 });
     expect(transformedUser6).toBeInstanceOf(User);
     expect(transformedUser6.photo).toBeInstanceOf(Photo);
     expect(transformedUser6).toEqual({
@@ -1477,7 +1477,7 @@ describe('basic functionality', () => {
       ],
     });
 
-    const transformedUser7 = plainToInstance(User, fromPlainUser, { version: 3 });
+    const transformedUser7 = plainToClass(User, fromPlainUser, { version: 3 });
     expect(transformedUser7).toBeInstanceOf(User);
     expect(transformedUser7.photo).toBeInstanceOf(Photo);
     expect(transformedUser7.photos[0]).toBeInstanceOf(Photo);
@@ -1537,7 +1537,7 @@ describe('basic functionality', () => {
       getName: 'Umed Khudoiberdiev',
     });
 
-    const transformedUser = plainToInstance(User, fromPlainUser);
+    const transformedUser = plainToClass(User, fromPlainUser);
     expect(transformedUser).toBeInstanceOf(User);
     const likeUser = new User();
     likeUser.firstName = 'Umed';
@@ -1589,7 +1589,7 @@ describe('basic functionality', () => {
       fullName: 'Umed Khudoiberdiev',
     });
 
-    const transformedUser = plainToInstance(User, fromPlainUser);
+    const transformedUser = plainToClass(User, fromPlainUser);
     expect(transformedUser).toBeInstanceOf(User);
     const likeUser = new User();
     likeUser.firstName = 'Umed';
@@ -1655,7 +1655,7 @@ describe('basic functionality', () => {
       },
     });
 
-    const transformedUser = plainToInstance(User, fromPlainUser, { excludePrefixes: ['_', '$'] });
+    const transformedUser = plainToClass(User, fromPlainUser, { excludePrefixes: ['_', '$'] });
     expect(transformedUser).toBeInstanceOf(User);
     const likeUser = new User();
     likeUser.photo = new Photo();
@@ -1742,7 +1742,7 @@ describe('basic functionality', () => {
       },
     ]);
 
-    const transformedUser = plainToInstance(User, fromPlainUsers);
+    const transformedUser = plainToClass(User, fromPlainUsers);
 
     expect(transformedUser[0]).toBeInstanceOf(User);
     expect(transformedUser[1]).toBeInstanceOf(User);
@@ -1807,7 +1807,7 @@ describe('basic functionality', () => {
     const obj = Object.create(null);
     obj.a = 'JS FTW';
 
-    const transformedClass = plainToInstance(TestClass, obj);
+    const transformedClass = plainToClass(TestClass, obj);
     expect(transformedClass).toBeInstanceOf(TestClass);
   });
 
@@ -1842,7 +1842,7 @@ describe('basic functionality', () => {
     obj.usersDefined = [{ name: 'a-name' }];
     obj.usersUndefined = undefined;
 
-    const transformedClass = plainToInstance(TestClass, obj as Record<string, any>);
+    const transformedClass = plainToClass(TestClass, obj as Record<string, any>);
 
     expect(transformedClass).toBeInstanceOf(TestClass);
 

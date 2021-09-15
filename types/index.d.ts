@@ -30,12 +30,8 @@ export declare function classToPlainFromExist<T>(
 /**
  * Converts plain (literal) object to class (constructor) object. Also works with arrays.
  */
-export declare function plainToInstance<T, V>(
-  cls: ClassConstructor<T>,
-  plain: V[],
-  options?: ClassTransformOptions
-): T[];
-export declare function plainToInstance<T, V>(cls: ClassConstructor<T>, plain: V, options?: ClassTransformOptions): T;
+export declare function plainToClass<T, V>(cls: ClassConstructor<T>, plain: V[], options?: ClassTransformOptions): T[];
+export declare function plainToClass<T, V>(cls: ClassConstructor<T>, plain: V, options?: ClassTransformOptions): T;
 /**
  * Converts plain (literal) object to class (constructor) object.
  * Uses given object as source object (it means fills given object with data from plain object).

@@ -19,8 +19,8 @@ export function TransformPlainToInstance(
       const isPromise =
         !!result && (typeof result === 'object' || typeof result === 'function') && typeof result.then === 'function';
       return isPromise
-        ? result.then((data: any) => classTransformer.plainToInstance(classType, data, params))
-        : classTransformer.plainToInstance(classType, result, params);
+        ? result.then((data: any) => classTransformer.plainToClass(classType, data, params))
+        : classTransformer.plainToClass(classType, result, params);
     };
   };
 }

@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { plainToInstance, Transform, Type } from '../../src/index';
+import { plainToClass, Transform, Type } from '../../src/index';
 import { defaultMetadataStorage } from '../../src/storage';
 
 describe('inheritence', () => {
@@ -32,7 +32,7 @@ describe('inheritence', () => {
       email: 'johnny.cage@gmail.com',
     };
 
-    const classedStudent = plainToInstance(Student, plainStudent);
+    const classedStudent = plainToClass(Student, plainStudent);
     expect(classedStudent.name).toEqual('JOHNY CAGE');
     expect(classedStudent.university).toEqual('MIT');
     expect(classedStudent.birthDate.getTime()).toEqual(new Date(1967, 2, 1).getTime());
